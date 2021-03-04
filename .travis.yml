@@ -5,3 +5,12 @@ services:
 script: 
   - docker build -t dheerajodha/node .
   - docker images dheerajodha/node
+
+before_deploy:
+  - docker login -u dheerajodha -p ihateladygaga
+
+deploy:
+  provider: script
+  script: docker push dheerajodha/node
+  on:
+    branch: master
