@@ -1,7 +1,7 @@
 <div align="center"><h1>Snapshot Controller</h1></div>
 
 ```mermaid
-%%{init: {'theme':'forest',"themeVariables":{"width": "590px"}}}%%
+%%{init: {'theme':'forest',"themeVariables":{"max-width": "600px"}}}%%
 flowchart TD
   %% Defining the styles
     classDef Red fill:#FF9999;
