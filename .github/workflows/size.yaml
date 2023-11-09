@@ -13,9 +13,11 @@ jobs:
         run: |
           #!/usr/bin/bash
           set -euo pipefail
+
           additions=$(curl -s "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}" | jq '.additions')
           deletions=$(curl -s "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}" | jq '.deletions')
           size=$((additions + deletions))
+
           sizelabel=XS
           if [ ${size} -gt 500 ]; then
             sizelabel="XXL"
@@ -28,6 +30,7 @@ jobs:
           elif [ ${size} -gt 30 ]; then
             sizelabel="S"
           fi
+
           echo "Adding size: ${sizelabel}"
           curl -s --fail-with-body -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
